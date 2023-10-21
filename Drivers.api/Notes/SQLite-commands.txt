@@ -1,0 +1,9 @@
+CREATE TABLE "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+
+run database database: sqlite3 PerformanceDBv1.db
+to see all tables: .tables
+for help : .help
+to exit: .exit
