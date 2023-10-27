@@ -1,5 +1,5 @@
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+// using MongoDB.Bson.Serialization.Attributes;
+// using MongoDB.Bson;
 
 namespace Drivers.api.Models;
 
@@ -18,8 +18,6 @@ public class Driver
   public string nationality {get; set;} = string.Empty;
   public string team {get; set;} = string.Empty;
   public int? teamPoints {get; set;}
-  public int? carId {get; set;}
-  public Car? carOfDriver {get; set;}
   
 }
 

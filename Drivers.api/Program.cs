@@ -1,19 +1,18 @@
 using Drivers.api.Configurations;
 using Drivers.api.Services;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver.Core.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("MongoDatabase")); // MongoDb
 
-var connectionString = builder.Configuration["SQLiteDatabase:connectionString"]; // SQLite
 var dbConfig = new DatabaseConfig();
+var dbSettings = new DatabaseSettings();
 builder.Configuration.GetSection("DatabaseConfig").Bind(dbConfig); // bind db config with appsettings properties.
+builder.Configuration.GetSection("SQLiteDatabase").Bind(dbSettings); // bind db settings with appsettings properties.
 
 builder.Services.AddDbContext<AppDbContext>(options => {
-    options.UseSqlite(connectionString, action => {
+    options.UseSqlite(dbSettings.ConnectionString, action => {
         action.CommandTimeout(dbConfig.timeoutTime);
     });
 
@@ -24,7 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(options => {
     
 }); // SQLite
 
-builder.Services.AddSingleton<DriverService>();
+builder.Services.AddScoped<DriverService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/esataydin/Documents/FullstackPerformance/Drivers.api/Drivers.api.csproj": {}
+    "/Users/esataydin/Documents/GitHub/FullstackPerformance/Drivers.api/Drivers.api.csproj": {}
   },
   "projects": {
-    "/Users/esataydin/Documents/FullstackPerformance/Drivers.api/Drivers.api.csproj": {
+    "/Users/esataydin/Documents/GitHub/FullstackPerformance/Drivers.api/Drivers.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/esataydin/Documents/FullstackPerformance/Drivers.api/Drivers.api.csproj",
+        "projectUniqueName": "/Users/esataydin/Documents/GitHub/FullstackPerformance/Drivers.api/Drivers.api.csproj",
         "projectName": "Drivers.api",
-        "projectPath": "/Users/esataydin/Documents/FullstackPerformance/Drivers.api/Drivers.api.csproj",
+        "projectPath": "/Users/esataydin/Documents/GitHub/FullstackPerformance/Drivers.api/Drivers.api.csproj",
         "packagesPath": "/Users/esataydin/.nuget/packages/",
-        "outputPath": "/Users/esataydin/Documents/FullstackPerformance/Drivers.api/obj/",
+        "outputPath": "/Users/esataydin/Documents/GitHub/FullstackPerformance/Drivers.api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/esataydin/.nuget/NuGet/NuGet.Config"
@@ -56,10 +56,6 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.12, )"
-            },
-            "MongoDb.Driver": {
-              "target": "Package",
-              "version": "[2.22.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

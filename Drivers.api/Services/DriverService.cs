@@ -4,25 +4,58 @@ using System.Linq;
 using System.Threading.Tasks;
 using Drivers.api.Configurations;
 using Drivers.api.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using MongoDB.Driver;
 
 namespace Drivers.api.Services
 {
     public class DriverService
     {
-        private readonly IMongoCollection<Driver> _driverCollection;
+        private readonly AppDbContext _context;
+        private readonly DatabaseSettings _dbSettings;
 
-        public DriverService(IOptions<DatabaseSettings> databasesettings)
+        public DriverService(AppDbContext context, IOptions<DatabaseSettings> dbSettings)
         {
-            // initiliaze  
-            var mongoClient = new MongoClient(databasesettings.Value.ConnectionString);
-            var mongoDatabase = mongoClient.GetDatabase(databasesettings.Value.DatabaseName);
-
-            _driverCollection = mongoDatabase.GetCollection<Driver>(databasesettings.Value.CollectionName);
+            _context = context;
+            _dbSettings = dbSettings.Value;
         }
-        public async Task<List<Driver>> GetAllDriversAsync() =>
-            await _driverCollection.Find(_ => true).ToListAsync();
+
+        public async Task<List<Driver>> GetDriversAsync()
+        {
+            return await _context.Drivers.ToListAsync();
+        }
+
+        public async Task<Driver> GetDriverAsync(int id)
+        {
+            return await _context.Drivers.FindAsync(id) ?? throw new InvalidOperationException($"Driver with ID {id} not found.");
+        }
+
+        public async Task<Driver> AddDriverAsync(Driver driver)
+        {
+            await _context.Drivers.AddAsync(driver);
+            await _context.SaveChangesAsync();
+            return driver;
+        }
+
+        public async Task<Driver> UpdateDriverAsync(Driver driver)
+        {
+            _context.Drivers.Update(driver);
+            await _context.SaveChangesAsync();
+            return driver;
+        }
+
+        public async Task<Driver> DeleteDriverAsync(int id)
+        {
+            var driver = await _context.Drivers.FindAsync(id) ?? throw new InvalidOperationException($"Driver with ID {id} not found.");
+            _context.Drivers.Remove(driver);
+            await _context.SaveChangesAsync();
+            return driver;
+        }
+
+        public async Task<bool> IsDriverExistsAsync(string id)
+        {
+            return await _context.Drivers.AnyAsync(d => d.Id == id);
+        }
     }
 
 }

@@ -1,0 +1,24 @@
+    "MongoDatabase": {
+      "ConnectionString": "mongodb://localhost:27017",
+      "DatabaseName": "PerformanceDBv1",
+      "CollectionName": "Drivers"
+    }
+
+program.cs
+// builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("MongoDatabase")); // MongoDb
+
+        // private readonly IMongoCollection<Driver> _driverCollection;
+
+            // initiliaze  
+
+            // var mongoClient = new MongoClient(databasesettings.Value.ConnectionString);
+            // var mongoDatabase = mongoClient.GetDatabase(databasesettings.Value.DatabaseName);
+
+            // _driverCollection = mongoDatabase.GetCollection<Driver>(databasesettings.Value.CollectionName);
+
+                    // public async Task<List<Driver>> GetAllDriversAsync() =>
+        //     await _driverCollection.Find(_ => true).ToListAsync();
+
+        public string ConnectionString { get; set; } = string.Empty;
+        public string DatabaseName { get; set; } = string.Empty;
+        public string CollectionName { get; set; } = string.Empty;

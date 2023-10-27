@@ -25,7 +25,7 @@ namespace Drivers.api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllDrivers()
         {
-            var listAllDrivers = await _driverService.GetAllDriversAsync();
+            var listAllDrivers = await _driverService.GetDriversAsync();
             return Ok(listAllDrivers);
         }
 

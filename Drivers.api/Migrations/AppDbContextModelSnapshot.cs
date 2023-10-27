@@ -17,29 +17,6 @@ namespace Drivers.api.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.12");
 
-            modelBuilder.Entity("Drivers.api.Models.Car", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("color")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("licensePlate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("model")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("year")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cars");
-                });
-
             modelBuilder.Entity("Drivers.api.Models.Driver", b =>
                 {
                     b.Property<string>("Id")
@@ -49,9 +26,6 @@ namespace Drivers.api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("bestPositionTimes")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("carId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("lastRace")
@@ -90,24 +64,7 @@ namespace Drivers.api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("carId")
-                        .IsUnique();
-
                     b.ToTable("Drivers");
-                });
-
-            modelBuilder.Entity("Drivers.api.Models.Driver", b =>
-                {
-                    b.HasOne("Drivers.api.Models.Car", "carOfDriver")
-                        .WithOne("driverOfCar")
-                        .HasForeignKey("Drivers.api.Models.Driver", "carId");
-
-                    b.Navigation("carOfDriver");
-                });
-
-            modelBuilder.Entity("Drivers.api.Models.Car", b =>
-                {
-                    b.Navigation("driverOfCar");
                 });
 #pragma warning restore 612, 618
         }
