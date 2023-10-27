@@ -1,6 +1,0 @@
-brew services list #list all brew services
-mongosh #connect to mongodb  
-show dbs #show all databases
-use <databaseName> # select db
-show collections # show tables
-db.<collectionName>.find() #see all data in a table
